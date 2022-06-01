@@ -5,20 +5,19 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import Addtodo from './Addtodo';
 
 
 const CreateTask = () => {
     return (
-        <Router>
-            <Switch>
-                <div className="container text-center my-4">
-                    <div class="card" style={{ width: '18rem' }}>
+        <>
+            <div className="container my-4">
+                <h1 className="text-center">Create task</h1>
+            </div>
+            <div className="text-center">
+                <div className="container my-4">
+                    <div class="card text-center" style={{ width: '18rem' }}>
                         <div class="card-body">
 
-                            <Route path="/addtodo">
-                                <Addtodo />
-                           
                             <div className="row">
                                 <div className='col-4'>
                                     <Link class="fa-solid fa-plus" to='/addtodo'></Link>
@@ -28,10 +27,10 @@ const CreateTask = () => {
                                 </div>
                                 <hr />
                             </div>
-                            </Route>
+
                             <div className="row">
                                 <div className='col-4'>
-                                    <link class="fa-solid fa-plus" to='/addtodo'></link>
+                                    <Link class="fa-solid fa-plus" to='/createtask'></Link>
                                 </div>
                                 <div className='col-7'>
                                     <h5 class="card-title">Create Project</h5>
@@ -41,20 +40,18 @@ const CreateTask = () => {
 
                             <div className="row">
                                 <div className='col-4'>
-                                    <i class="fa-solid fa-plus"></i>
+                                    <Link class="fa-solid fa-plus" to='/createteam'></Link>
                                 </div>
                                 <div className='col-6'>
                                     <h5 class="card-title">Create Team</h5>
                                 </div>
                                 {/* <hr /> */}
                             </div>
-
-                            {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
                         </div>
                     </div>
                 </div>
-            </Switch>
-        </Router >
+            </div>
+        </>
     )
 }
 

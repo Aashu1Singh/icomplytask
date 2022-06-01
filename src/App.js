@@ -1,29 +1,68 @@
-
+import { useEffect } from 'react';
 import './App.css';
 import { GoogleLogin } from 'react-google-login';
 import Addtodo from './components/Addtodo';
 import CreateTask from './components/CreateTask';
 // import { GoogleLogin } from '@react-oauth/google';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+import Login from './components/Login';
+import { useState } from 'react';
+
+
 
 function App() {
-  const handleFailure = (result) => {
-    console.log(result)
-  }
-  const handleLogin = (googleData) => {
-    console.log(googleData)
-  }
+
+  const user = false;
+
+  //  const [user, setUser] =  useState(null)
+  
+  // useEffect(() => {
+    
+  // const getUser = ()=>{
+  //      fetch("http://localhost:5000/auth/login/success", {
+  //        method: "GET",
+  //        credentials: "include",
+  //        headers: {
+  //          Accept : "application/json",
+  //          "Content-Type": "application/json",
+  //          "Access-Control-Allow-Credentials": true,
+  //        }
+  //      }).then((Response)=>{
+  //        if(Response.status === 200) return Response.json()
+  //        throw new Error("authentication has been failed")
+  //      }).then(resObject=>{
+  //        setUser(resObject.user)
+  //      }).catch(err=>{
+  //        console.log(err);
+         
+  //      })
+  // }
+  // getUser()
+  // }, [])
+  //  console.log(user);
+   
+
+
   return (
     <div>
-      <CreateTask />
-      {/* <Addtodo/> */}
-      {/* <GoogleLogin
-          clientId="848864457200-ei7alu2v67k9ct00r96c5jdrb00m8r31.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={handleLogin}
-          onFailure={handleFailure}
-          cookiePolicy={'single_host_origin'}
-        /> */}
-
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            {user ? <Redirect to="/" /> : <CreateTask />}
+          </Route>
+          <Route exact path="/login">
+            {user ? <Redirect to="/" /> : <Login />}
+          </Route>
+          <Route exact path="/addtodo">
+            {user ? <Redirect to="/" /> : <Addtodo />}
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
