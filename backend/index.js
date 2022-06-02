@@ -8,21 +8,11 @@ const session = require('express-session')
 
 const app = express();
 
-
-// app.use(cookieSession(
-//     {
-//     name: "session",
-//     keys:["lama"],
-//     maxAge: 24*60*60*100
-// }
-// ))
-
 app.use(session({
     secret: "Our little secret.",
     resave: false,
     saveUninitialized: false
 }));
-
 
 app.use(passport.initialize());
 app.use(passport.session());

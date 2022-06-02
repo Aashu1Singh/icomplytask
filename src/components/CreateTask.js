@@ -9,13 +9,22 @@ import {
 
 const CreateTask = () => {
     return (
-        <>
-            <div className="container my-4">
-                <h1 className="text-center">Create task</h1>
+        <div className='container'>
+            <div className="row my-4">
+                <div className="col-2">
+                    <i className="fa-solid fa-2x fa-record-vinyl"></i>
+                </div>
+                <div className="col-6 my-4">
+                    <h1 className="text-center">Create task</h1>
+                </div>
+                <div className="col-4">
+                <i className="fa-solid fa-4x fa-ellipsis"></i>
+                </div>
             </div>
+
             <div className="text-center">
                 <div className="container my-4">
-                    <div className="card text-center" style={{ width: '18rem' }}>
+                    <div className="card text-center " style={{ width: '18rem' }}>
                         <div className="card-body">
 
                             <div className="row">
@@ -51,7 +60,7 @@ const CreateTask = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

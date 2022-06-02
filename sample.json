@@ -1,0 +1,27 @@
+{
+  '0Im2ZSaf-HsSm3_yDKCLDCWsjLx9Zqim': '{
+    "cookie": {
+      "originalMaxAge": null,
+      "expires": null,
+      "httpOnly": true,
+      "path": "/"
+    },
+    "passport": {
+      "user": {
+        "id": "117278924133283928125",
+        "displayName": "Aashu Singh",
+        "name": {
+          "familyName": "Singh",
+          "givenName": "Aashu"
+        },
+        "photos": [
+          {
+            "value": "https://lh3.googleusercontent.com/a-/AOh14GiS3JD9UsYynNARyFkmvC9Krhbhraz-1k6XkhTExw=s96-c"
+          }
+        ],
+        "provider": "google",
+        "_raw": "{\\n  \\"sub\\": \\"117278924133283928125\\",\\n  \\"name\\": \\"Aashu Singh\\",\\n  \\"given_name\\": \\"Aashu\\",\\n  \\"family_name\\": \\"Singh\\",\\n  \\"picture\\": \\"https: //lh3.googleusercontent.com/a-/AOh14GiS3JD9UsYynNARyFkmvC9Krhbhraz-1k6XkhTExw\\\\u003ds96-c\\",\\n  \\"locale\\": \\"en\\"\\n}","_json":{"sub":"117278924133283928125","name":"Aashu Singh","given_name":"Aashu","family_name":"Singh","picture":"https://lh3.googleusercontent.com/a-/AOh14GiS3JD9UsYynNARyFkmvC9Krhbhraz-1k6XkhTExw=s96-c","locale":"en"}
+      }
+    }
+  }'
+}
