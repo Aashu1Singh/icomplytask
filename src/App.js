@@ -31,7 +31,7 @@ function App() {
      
     }
     getUser()
-    console.log("outside function")
+    // console.log("outside function")
   // const getUser = ()=>{
   //      fetch("http://localhost:5000/auth/login/success", {
   //        method: "GET",
