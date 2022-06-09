@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios';
 
 const ShowTodo = (props) => {
+    // let note={}
     const deleteTask = (id)=>{
         // console.log(id);
         axios.delete('http://localhost:5000/addtodo',{ data: {
@@ -20,7 +21,7 @@ const ShowTodo = (props) => {
             <div className="card-body">
                 <h4 className="card-title">{props.todo.task}</h4>
             <button className="fa-solid fa-trash-can mx-2" type="submit" onClick={()=>deleteTask(props.index)}></button>
-            <button className="fa-solid fa-pen-to-square mx-2"></button>
+            <button className="fa-solid fa-pen-to-square mx-2" onClick={()=>{props.updateNote(props.index)}}></button>
             </div>
         </div>
     )

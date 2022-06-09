@@ -6,13 +6,14 @@ import CreateTask from './components/CreateTask';
 // import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import {
-  BrowserRouter as Router,
-  Switch,
+  BrowserRouter,
+  Routes,
   Route,
-  Redirect
+  Navigate
 } from "react-router-dom";
 import Login from './components/Login';
 import { useState } from 'react';
+import Register from './components/Register';
 
 
 
@@ -20,59 +21,46 @@ function App() {
 
   // const user = false;
 
-   const [user, setUser] =  useState(null)
-  
+  const [user, setUser] = useState(false)
+
   useEffect(() => {
-     
-    const getUser = async ()=>{
-     const res = await axios.get(`http://localhost:5000/auth/login/success`)
-     
-     console.log(res);
-     
-    }
-    getUser()
-    // console.log("outside function")
-  // const getUser = ()=>{
-  //      fetch("http://localhost:5000/auth/login/success", {
-  //        method: "GET",
-  //        credentials: "include",
-  //        headers: {
-  //          Accept : "application/json",
-  //          "Content-Type": "application/json",
-  //          "Access-Control-Allow-Credentials": true,
-         
-  //        }
-  //      }).then((response)=>{
-  //        if(response.status === 200) return response.json()
-  //        throw new Error("authentication has been failed")
-  //      }).then(resObject=>{
-  //        setUser(resObject.user)
-  //      }).catch(err=>{
-  //        console.log(err);
-  //      })
-  // }
-  // getUser()
+
+    axios.get(`http://localhost:5000/login`).then((response) => {
+      console.log(response);
+      if (response.data.loggedIn == true) {
+
+        setUser(response.data.user[0].username)
+      }
+
+    })
+
+    // console.log(res);
+
+
+
   }, [])
   //  console.log(user);
-   
- 
+
+
 
   return (
     <div>
-    
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            {user ? <Redirect to="/" /> : <CreateTask />}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/"
+            element={<Login />}>
           </Route>
-          <Route exact path="/login">
-            {user ? <Redirect to="/" /> : <Login />}
+          <Route path="/login"
+            element={user ? <Navigate to="/" /> : <Login />}>
           </Route>
-          <Route exact path="/addtodo">
-            {user ? <Redirect to="/" /> : <Addtodo />}
+          <Route path="/addtodo"
+            element={user ? <Addtodo /> : <Navigate to="/login" />}>
           </Route>
-        </Switch>
-      </Router>
+          <Route path="/register"
+            element={user ? <Register /> : <Navigate to="/login" />}>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
