@@ -7,10 +7,10 @@ const Register = () => {
     const [password, setPassword] = useState('')
 
     const handleRegister = () => {
-        axios.post('http://localhost:5000/register', { username: username, password: password})
-        .then((res) => {
-            console.log("User Registered");
-        })
+        axios.post('http://localhost:5000/register', { username: username, password: password })
+            .then((res) => {
+                console.log("User Registered");
+            })
     }
     const onChangeU = (e) => {
         // console.log(e.target.value);
@@ -23,6 +23,9 @@ const Register = () => {
 
     return (
         <div className='container my-4'>
+            <h1 className="text-center my-3">
+                Welcome to Register Page
+            </h1>
             <form>
                 <div className="mb-3">
                     <label for="exampleInputEmail1" className="form-label">Username </label>
@@ -32,7 +35,7 @@ const Register = () => {
                     <label for="exampleInputPassword1" className="form-label">Password</label>
                     <input type="password" className="form-control" onChange={onChangeP} id="password" name='password' />
                 </div>
-                <button type="submit" onClick={handleRegister} className="btn btn-primary">Submit</button>
+                <button type="submit" onClick={handleRegister} className="btn btn-primary">Register</button>
             </form>
         </div>
     )

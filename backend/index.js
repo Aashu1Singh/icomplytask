@@ -77,35 +77,24 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
     const username = req.body.username;
     const password1 = req.body.password;
-    // console.log(req.body);
-
 
     db.query("SELECT * FROM users WHERE username = ?;",
         username,
         async (err, result) => {
             // console.log(result);
-
-            if (err) {
-                res.send({ err: err })
-            }
-
+            if (err) { res.send({ err: err }) }
             if (result.length > 0) {
-                // console.log(result[0].password);
-
                 let passwordCompare = await bcrypt.compare(password1, result[0].password)
                 console.log(passwordCompare);
 
                 if (passwordCompare) {
-                    // console.log(result);
                     req.session.user = result;
                     // console.log(req.session.user);
                     res.send(result)
                 } else {
                     res.send({ message: "Wrong username/password" })
                 }
-
             }
-
         })
 
 })
