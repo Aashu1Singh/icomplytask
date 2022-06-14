@@ -49,10 +49,12 @@ const db = mysql.createConnection({
 })
 
 app.get('/login', (req, res) => {
+    console.log("from /get/login ")
+    console.log(req.session.user)
     if (req.session.user) {
-        res.send({ loggedIn: true, user: req.session.user })
+        res.status(200).send({ loggedIn: true, user: req.session.user })
     } else {
-        res.send({ loggedIn: false })
+        res.status(403).send({ loggedIn: false })
     }
 })
 app.post('/register', (req, res) => {
@@ -70,7 +72,7 @@ app.post('/register', (req, res) => {
                 console.log(err);
             })
     });
-    res.redirect('/addtodo')
+    // res.redirect('/addtodo')
 
 });
 
@@ -90,9 +92,9 @@ app.post('/login', (req, res) => {
                 if (passwordCompare) {
                     req.session.user = result;
                     // console.log(req.session.user);
-                    res.send(result)
+                    res.status(200).send(result)
                 } else {
-                    res.send({ message: "Wrong username/password" })
+                    res.status(404).send({ message: "Wrong username/password" })
                 }
             }
         })

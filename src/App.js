@@ -1,9 +1,6 @@
 import { useEffect } from 'react';
 import './App.css';
-import { GoogleLogin } from 'react-google-login';
 import Addtodo from './components/Addtodo';
-import CreateTask from './components/CreateTask';
-// import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import {
   BrowserRouter,
@@ -18,21 +15,24 @@ import Main from './components/Main';
 
 function App() {
 
-  const [user, setUser] = useState(true)
+  const [user, setUser] = useState(() => false)
 
   useEffect(() => {
 
     axios.get(`http://localhost:5000/login`).then((response) => {
       console.log(response);
-      // setUser(response.data.loggedIn)
-      console.log(user);
-      
+      // setUser(response.data.loggedIn);
+      console.log(`app useEffect ${user}`);
+
       if (response.data.loggedIn == true) {
-        setUser(response.data.user[0].username)
+        setUser(true)
+        console.log(user);
+      } else {
+        setUser(false)
+
       }
     })
-
-  }, [])
+  })
 
   return (
     <div>

@@ -7,3 +7,30 @@
     padding-right: 20px;
     font-size: 1.5rem;
 }
+
+.inputText{
+    font-size: 19px;
+}
+
+.LoginBox{
+    height: 20rem;
+    border: 1.5px solid black;
+    border-radius: 20px;
+    width: 24vw;
+    margin-top: 150px;
+}
+
+.registerBtn{
+    padding: 6px 140px;
+    font-size: 17px;
+}
+
+.loginBtn{
+    padding: 6px 134px;
+    font-size: 17px;
+}
+
+.formDiv{
+    font-size: 20px;
+    margin-top: 40px;
+}

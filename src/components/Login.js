@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate  } from 'react-router-dom';
 
 const Login = (props) => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const navigate  = useNavigate();
+    let { user, setUser } = props;
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     axios.defaults.withCredentials = true;
 
@@ -13,49 +15,58 @@ const Login = (props) => {
         e.preventDefault()
         axios.post('/login', { username: username, password: password })
             .then((res) => {
-                console.log("User Registered");
-                props.setUser((prev) => {
-
-                    console.log(props.user);
-                    props.setUser(!prev);
-                    console.log(props.user);
-
-                })
+                // console.log(res.status)
+                console.log("Response from /login");
+                console.log(`login ${user}`);
+                if (res.status == 200) {
+                    setUser(true);
+                    console.log(`login ${user}`);
+                    navigate("/addtodo")
+                    // <Navigate to='/addtodo'/>
+                }
             })
-
     }
     const onChangeU = (e) => {
-        // console.log(e.target.value);
         setUsername(e.target.value)
     };
     const onChangeP = (e) => {
-        // console.log(e.target.value);
         setPassword(e.target.value)
     };
 
     return (
-        <div className='container'>
-
-            {/* <div className="container text-center mt-4">
-                <button className="btn btn-primary btn-round-lg" style={{padding: '10px 80px'}} onClick={google}> Sign in with google</button>
-            </div> */}
-            <div className="container text-center mt-4">
-                <h1 className="text-center my-3">
-                    Welcome to Login Page
-                </h1>
-                <form>
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputEmail1" className="form-label">Username </label>
-                        <input type="email" className="form-control" onChange={onChangeU} id="username" name='username' aria-describedby="emailHelp" />
+        <div className='container LoginBox'>
+            <div className="container mt-4">
+                <div>
+                    <h2 className="text-center mt-3">
+                        Log In to iTodo
+                    </h2>
+                </div>
+                <form className='formDiv'>
+                    <div className="my-1">
+                        {/* <label htmlFor="exampleInputEmail1" className="form-label">Username </label> */}
+                        <input type="email" className="form-control inputText" required={true} onChange={onChangeU} id="username" name='username' aria-describedby="emailHelp" placeholder='Username' />
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                        <input type="password" className="form-control" onChange={onChangeP} id="password" name='password' />
+                    <div className="mb-2">
+                        {/* <label htmlFor="exampleInputPassword1" className="form-label">Password</label> */}
+                        <input type="password" className="form-control inputText" onChange={onChangeP} id="password" name='password' placeholder='Password' required={true} />
                     </div>
-                    <Link onClick={handleRegister} className="btn btn-primary" to='/addtodo'>Log In</Link>
+                    <button onClick={handleRegister} className="btn btn-dark loginBtn" type="submit" >Log In</button>
                 </form>
+                <div className="row my-4">
+                    <div className="col-3">
+                        <i className="fa-solid fa-2x fa-note-sticky"></i>
+                    </div>
+                    <div className="col-3">
+                        <i className="fa-solid fa-2x fa-book"></i>
+                    </div>
+                    <div className="col-2">
+                        <i className="fa-brands fa-2x fa-evernote"></i>
+                    </div>
+                    <div className="col-2 mx-4">
+                        <i className="fa-solid fa-2x fa-circle-nodes"></i>
+                    </div>
+                </div>
             </div>
-
         </div>
 
     )
