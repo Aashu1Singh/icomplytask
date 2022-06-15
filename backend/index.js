@@ -54,7 +54,7 @@ app.get('/login', (req, res) => {
     if (req.session.user) {
         res.status(200).send({ loggedIn: true, user: req.session.user })
     } else {
-        res.status(403).send({ loggedIn: false })
+        res.status(200).send({ loggedIn: false })
     }
 })
 app.post('/register', (req, res) => {
@@ -94,7 +94,7 @@ app.post('/login', (req, res) => {
                     // console.log(req.session.user);
                     res.status(200).send(result)
                 } else {
-                    res.status(404).send({ message: "Wrong username/password" })
+                    res.status(400).send({ message: "Wrong username/password" })
                 }
             }
         })
@@ -150,7 +150,6 @@ app.put('/addtodo', (req, res) => {
             res.send(result)
         } else {
             console.log(err);
-
         }
     })
 })

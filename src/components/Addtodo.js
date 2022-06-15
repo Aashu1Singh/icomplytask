@@ -15,13 +15,12 @@ const Addtodo = () => {
         axios.post('http://localhost:5000/addtodo', { name: name, task: task }).then(() => {
             console.log("success");
         });
-
     }
 
     useEffect(() => {
         axios.get('http://localhost:5000/addtodo').then((res) => {
             setTodos(res.data)
-            console.log(todos);
+            // console.log(todos);
         })
 
     }, [])

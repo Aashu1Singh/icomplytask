@@ -22,7 +22,6 @@ const Login = (props) => {
                     setUser(true);
                     console.log(`login ${user}`);
                     navigate("/addtodo")
-                    // <Navigate to='/addtodo'/>
                 }
             })
     }

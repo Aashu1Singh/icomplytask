@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect , useState} from 'react';
 import './App.css';
 import Addtodo from './components/Addtodo';
 import axios from 'axios';
@@ -9,29 +9,33 @@ import {
   Navigate
 } from "react-router-dom";
 import Login from './components/Login';
-import { useState } from 'react';
 import Register from './components/Register';
 import Main from './components/Main';
 
 function App() {
-
   const [user, setUser] = useState(() => false)
 
   useEffect(() => {
 
     axios.get(`http://localhost:5000/login`).then((response) => {
       console.log(response);
-      // setUser(response.data.loggedIn);
       console.log(`app useEffect ${user}`);
 
+      var userData = localStorage.getItem('userData');
       if (response.data.loggedIn == true) {
+        localStorage.setItem('userData', response.data.user[0].username)
         setUser(true)
         console.log(user);
+      }
+      else if(userData) {
+        setUser(true)
+        console.log(user);
+        console.log(userData);
       } else {
         setUser(false)
-
       }
-    })
+    });
+
   })
 
   return (
